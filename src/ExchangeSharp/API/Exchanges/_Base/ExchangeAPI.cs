@@ -222,7 +222,9 @@ namespace ExchangeSharp
         /// </summary>
         static ExchangeAPI()
         {
-            foreach (Type type in typeof(ExchangeAPI).Assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ExchangeAPI)) && !type.IsAbstract))
+			Type[] types = typeof(ExchangeAPI).Assembly.GetTypes();
+
+			foreach (Type type in typeof(ExchangeAPI).Assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ExchangeAPI)) && !type.IsAbstract))
             {
                 // lazy create, we just create an instance to get the name, nothing more
                 // we don't want to pro-actively create all of these becanse an API
