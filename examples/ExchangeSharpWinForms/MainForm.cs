@@ -51,7 +51,12 @@ namespace ExchangeSharpWinForms
 				var binanceAPI = new ExchangeBinanceAPI();
 
 				var bnbTickers = await binanceAPI.GetTickersAsync();
-				bnbTickers = bnbTickers.Where(p => p.Key.Contains("USDT") && !p.Key.Contains("UP") && !p.Key.Contains("DOWN") && !p.Key.Contains("BEAR"));
+				bnbTickers = bnbTickers.Where(p => p.Key.Contains("USDT"));
+
+				//bnbTickers = bnbTickers.Where(p => p.Key.Contains("USDT") && !p.Key.Contains("UP") && !p.Key.Contains("DOWN") && !p.Key.Contains("BEAR") && !p.Key.Contains("BULL")
+				//&& !p.Key.Contains("BTCST") && !p.Key.Contains("DREP") && !p.Key.Contains("YFII") && !p.Key.Contains("BCH") && !p.Key.Contains("BZRX"));
+
+				//BULL BTCST DREP YFII BCHSV BCHABC BZRZ
 
 				var bithumpAPI = new ExchangeBithumbAPI();
 				var bithumpTickers = await bithumpAPI.GetTickersAsync();
@@ -61,7 +66,7 @@ namespace ExchangeSharpWinForms
 				{
 					foreach (var bithumpTicker in bithumpTickers)
 					{
-						if (bnbTicker.Key.Contains(bithumpTicker.Key))
+						if (bnbTicker.Key.Replace("USDT", "") == bithumpTicker.Key)
 						{
 							Quote item = new Quote();
 							item.Ticker = bnbTicker.Key;

@@ -99,8 +99,9 @@ namespace ExchangeSharp
                 "fluctate_rate_24H": "0.02"
             }
             */
-            ExchangeTicker ticker = await this.ParseTickerAsync(data, marketSymbol, "max_price", "min_price", "min_price", "min_price", "units_traded_24H");
-            ticker.Volume.Timestamp = data.Parent.Parent["date"].ConvertInvariant<long>().UnixTimeStampToDateTimeMilliseconds();
+            //ExchangeTicker ticker = await this.ParseTickerAsync(data, marketSymbol, "max_price", "min_price", "min_price", "min_price", "units_traded_24H");
+			ExchangeTicker ticker = await this.ParseTickerAsync(data, marketSymbol, "opening_price", "closing_price", "closing_price", "closing_price", "units_traded_24H");
+			ticker.Volume.Timestamp = data.Parent.Parent["date"].ConvertInvariant<long>().UnixTimeStampToDateTimeMilliseconds();
             return ticker;
         }
 
