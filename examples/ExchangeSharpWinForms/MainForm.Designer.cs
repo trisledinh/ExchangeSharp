@@ -155,20 +155,20 @@ namespace ExchangeSharpWinForms
             this.txtCoinName11 = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.drgMXC1INCH = new System.Windows.Forms.DataGridView();
-            this.btnMXC1INCH = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn39 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnMXC1INCH = new System.Windows.Forms.Button();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.txtCoinName12 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.drgBNBInch = new System.Windows.Forms.DataGridView();
-            this.btnBNBInch = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn42 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn43 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn44 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnBNBInch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.drgBnbKRW)).BeginInit();
             this.tabCompare.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1467,17 +1467,6 @@ namespace ExchangeSharpWinForms
             this.drgMXC1INCH.Size = new System.Drawing.Size(770, 321);
             this.drgMXC1INCH.TabIndex = 48;
             // 
-            // btnMXC1INCH
-            // 
-            this.btnMXC1INCH.Location = new System.Drawing.Point(479, 23);
-            this.btnMXC1INCH.Margin = new System.Windows.Forms.Padding(2);
-            this.btnMXC1INCH.Name = "btnMXC1INCH";
-            this.btnMXC1INCH.Size = new System.Drawing.Size(162, 38);
-            this.btnMXC1INCH.TabIndex = 47;
-            this.btnMXC1INCH.Text = "Get Tickers";
-            this.btnMXC1INCH.UseVisualStyleBackColor = true;
-            this.btnMXC1INCH.Click += new System.EventHandler(this.btnMXC1INCH_Click);
-            // 
             // dataGridViewTextBoxColumn37
             // 
             this.dataGridViewTextBoxColumn37.DataPropertyName = "Ticker";
@@ -1505,6 +1494,17 @@ namespace ExchangeSharpWinForms
             this.dataGridViewTextBoxColumn40.HeaderText = "Percent";
             this.dataGridViewTextBoxColumn40.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
+            // 
+            // btnMXC1INCH
+            // 
+            this.btnMXC1INCH.Location = new System.Drawing.Point(479, 23);
+            this.btnMXC1INCH.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMXC1INCH.Name = "btnMXC1INCH";
+            this.btnMXC1INCH.Size = new System.Drawing.Size(162, 38);
+            this.btnMXC1INCH.TabIndex = 47;
+            this.btnMXC1INCH.Text = "Get Tickers";
+            this.btnMXC1INCH.UseVisualStyleBackColor = true;
+            this.btnMXC1INCH.Click += new System.EventHandler(this.btnMXC1INCH_Click);
             // 
             // tabPage12
             // 
@@ -1558,17 +1558,6 @@ namespace ExchangeSharpWinForms
             this.drgBNBInch.Size = new System.Drawing.Size(770, 321);
             this.drgBNBInch.TabIndex = 52;
             // 
-            // btnBNBInch
-            // 
-            this.btnBNBInch.Location = new System.Drawing.Point(479, 23);
-            this.btnBNBInch.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBNBInch.Name = "btnBNBInch";
-            this.btnBNBInch.Size = new System.Drawing.Size(162, 38);
-            this.btnBNBInch.TabIndex = 51;
-            this.btnBNBInch.Text = "Get Tickers";
-            this.btnBNBInch.UseVisualStyleBackColor = true;
-            this.btnBNBInch.Click += new System.EventHandler(this.btnBNBInch_Click);
-            // 
             // dataGridViewTextBoxColumn41
             // 
             this.dataGridViewTextBoxColumn41.DataPropertyName = "Ticker";
@@ -1597,6 +1586,17 @@ namespace ExchangeSharpWinForms
             this.dataGridViewTextBoxColumn44.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn44.Name = "dataGridViewTextBoxColumn44";
             // 
+            // btnBNBInch
+            // 
+            this.btnBNBInch.Location = new System.Drawing.Point(479, 23);
+            this.btnBNBInch.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBNBInch.Name = "btnBNBInch";
+            this.btnBNBInch.Size = new System.Drawing.Size(162, 38);
+            this.btnBNBInch.TabIndex = 51;
+            this.btnBNBInch.Text = "Get Tickers";
+            this.btnBNBInch.UseVisualStyleBackColor = true;
+            this.btnBNBInch.Click += new System.EventHandler(this.btnBNBInch_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1606,6 +1606,7 @@ namespace ExchangeSharpWinForms
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Exchange Checking";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.drgBnbKRW)).EndInit();
             this.tabCompare.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

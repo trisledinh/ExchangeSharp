@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using ExchangeSharp;
 using System.Collections.Generic;
 using ExchangeSharpWinForms.Entities;
+using ExchangeSharp.TelegramBot;
 
 namespace ExchangeSharpWinForms
 {
@@ -25,11 +26,75 @@ namespace ExchangeSharpWinForms
 		[STAThread]
 		static void Main()
 		{
+			TelegramBot telegramBot = new TelegramBot();
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());
+
 		}
 
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+			System.Threading.Timer timer = new System.Threading.Timer(new System.Threading.TimerCallback(MyIntervalFunction));
+			timer.Change(0, 1000*60*15);
+		}
+
+		private void MyIntervalFunction(object obj)
+		{
+			this.Invoke((MethodInvoker)delegate
+				{
+					FetchTickersBNB("XRP");
+				});
+					
+		}
+
+		public async void FetchTickersBNB(string symbol)
+		{
+			try
+			{
+				var binanceAPI = new ExchangeBinanceAPI();
+
+				var bnbTickers = await binanceAPI.GetTickersAsync();
+				bnbTickers = bnbTickers.Where(p => p.Key.ToUpper().Contains(symbol));
+
+				var bithumpAPI = new ExchangeBithumbAPI();
+				var bithumpTickers = await bithumpAPI.GetTickersAsync();
+
+				if (!string.IsNullOrEmpty(txtCoinNameBNB.Text))
+					bithumpTickers = bithumpTickers.Where(p => p.Key.ToUpper().Contains(symbol));
+
+				List<Quote> listQoutes = new List<Quote>();
+				foreach (var bnbTicker in bnbTickers)
+				{
+					foreach (var bithumpTicker in bithumpTickers)
+					{
+						if (bnbTicker.Key.Replace("USDT", "") == bithumpTicker.Key)
+						{
+							Quote item = new Quote();
+							item.Ticker = bnbTicker.Key.ToUpper();
+							item.Price1 = bnbTicker.Value.Last;
+							item.Price2 = bithumpTicker.Value.Last;
+
+							decimal total1 = item.Price1 * rateUSDTVND;
+							decimal percent = (item.Price2 * rateKRWVND * 0.9975M - total1) / total1 * 100;
+							item.Percent = percent;
+
+							if (percent > TelegramBot.minRatePercent)
+							{
+								TelegramBot.SendMessageToChannel($"Different between BNB and Bithumb for {symbol} with USDT rate: {rateUSDTVND} and KRW Rate : {rateKRWVND}:\r\n {percent}", null);
+							}	
+						}
+					}
+				}
+
+				//textTickersResult.Text = b.ToString();
+			}
+			catch(Exception ex)
+			{
+
+			}
+		}
 		private async void FetchTickersBNB()
 		{
 			//if (!Created || string.IsNullOrWhiteSpace(cmbExchange.SelectedItem as string))
